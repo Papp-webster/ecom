@@ -43,15 +43,20 @@ function get_products() {
 
     while($row = fetch_array($result)){
 
+        $price = $row['product_price'];
+        $title = $row['product_title'];
+        $desc = $row['product_desc'];
+        $img = $row['product_img'];
+
         $product = <<<DELIMITER
          <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="{$img}" alt="pic">
                             <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Fifth Product</a>
+                                <h4 class="pull-right">{$price}</h4>
+                                <h4><a href="#">{$title}</a>
                                 </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p>{$desc}</p>
                             </div>
                             <a class="btn btn-primary" target="_blank" href="#">Button</a>
                         </div>
