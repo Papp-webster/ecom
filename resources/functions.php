@@ -53,12 +53,12 @@ function get_products() {
                         <div class="thumbnail">
                             <img src="{$img}" alt="pic">
                             <div class="caption">
-                                <h4 class="pull-right">{$price}</h4>
+                                <h4 class="pull-right">&#8364;{$price}</h4>
                                 <h4><a href="#">{$title}</a>
                                 </h4>
                                 <p>{$desc}</p>
                             </div>
-                            <a class="btn btn-primary" target="_blank" href="#">Button</a>
+                            <a class="btn btn-primary" target="_blank" href="item.php">Add to cart</a>
                         </div>
                     </div>
         DELIMITER;
