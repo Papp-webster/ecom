@@ -34,6 +34,9 @@ function fetch_array($result){
     return mysqli_fetch_array($result);
 }
 
+
+/* FRONT END FUNCTIONS */
+
 //get products
 
 function get_products() {
@@ -54,7 +57,7 @@ function get_products() {
                             <a href="item.php?id={$p_id}"><img src="{$img}" alt="pic"></a>
                             <div class="caption">
                                 <h4 class="pull-right">&#8364;{$price}</h4>
-                                <h4><a href="#">{$title}</a>
+                                <h4><a href="item.php?id={$p_id}">{$title}</a>
                                 </h4>
                                 <p>{$desc}</p>
                             </div>
@@ -87,5 +90,8 @@ function get_categories() {
 
      }
 }
+
+
+/* BACK END FUNCTIONS */
 
 ?>
