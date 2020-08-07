@@ -90,7 +90,43 @@ function get_categories() {
 
      }
 }
+function get_prod_in_catpage() {
+    
 
+
+    $result = query(" SELECT * FROM products WHERE product_cat_id= " . escape_string($_GET['id']) . " ");
+
+    confirm($result);
+
+    while($row = fetch_array($result)){
+        $p_id = $row['product_id'];
+        $price = $row['product_price'];
+        $title = $row['product_title'];
+        $desc = $row['product_desc'];
+        $short = $row['product_short'];
+        $img = $row['product_img'];
+
+        $cat_product = <<<DELIMITER
+            
+        <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <a href="item.php?id={$p_id}"><img src="{$img}" alt="pic"></a>
+                    <div class="caption">
+                        <h3>{$title}</h3>
+                        <p>{$short}</p>
+                        <p>
+                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        DELIMITER;
+
+         echo $cat_product;
+    }
+
+}
 
 /* BACK END FUNCTIONS */
 
