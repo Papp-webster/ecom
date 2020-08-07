@@ -42,7 +42,7 @@ function get_products() {
     confirm($result);
 
     while($row = fetch_array($result)){
-
+        $p_id = $row['product_id'];
         $price = $row['product_price'];
         $title = $row['product_title'];
         $desc = $row['product_desc'];
@@ -58,7 +58,7 @@ function get_products() {
                                 </h4>
                                 <p>{$desc}</p>
                             </div>
-                            <a class="btn btn-primary" target="_blank" href="item.php">Show</a>
+                            <a class="btn btn-primary" href="item.php?id={$p_id}">Show</a>
                         </div>
                     </div>
         DELIMITER;
