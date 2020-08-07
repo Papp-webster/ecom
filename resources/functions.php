@@ -68,4 +68,24 @@ function get_products() {
     }
 }
 
+
+function get_categories() {
+
+    global $connect;
+    $query = query("SELECT * FROM categories");
+    confirm($query);
+     
+    while($row = fetch_array($query)) {
+        $cat_id = $row['cat_id'];
+        $title = $row['cat_title'];
+         $category_link = <<<DELIMITER
+          <a href='category.php?id={$cat_id}' class='list-group-item'>{$title}</a>
+         
+         DELIMITER;
+
+         echo $category_link;
+
+     }
+}
+
 ?>
