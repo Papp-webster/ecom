@@ -8,9 +8,7 @@
 <?php include(TEMPLATE_FRONT .  "/header.php");?>
 
 
-     <!--Navigation -->
-
-<?php include(TEMPLATE_FRONT .  "/top_nav.php");?>
+    
 
          <!-- Contact Section -->
 
