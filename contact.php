@@ -1,7 +1,7 @@
 
 <!-- Configuration-->
 
-<?php require_once("../resources/config.php"); ?>
+<?php require_once("./resources/config.php"); ?>
 
 
 <!-- Header-->
