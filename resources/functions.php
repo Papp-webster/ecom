@@ -203,6 +203,30 @@ function login_user() {
    } 
 }
 
+function send_message() {
+    if(isset($_POST['send'])){
+
+        $to = "papp.laszlo.web@gmail.com";
+        $name = $_POST['name'];
+        $subject = $_POST['subject'];
+        $email = $_POST['email'];
+        $message = $_POST['message'];
+
+        $headers = "From: {$name} {$email}";
+        $send_mail = mail($to, $subject, $message, $headers);
+        if(!$send_mail){
+            set_message("ERROR SENDIN EMAIL!");
+            redirect("contact.php");
+        }else {
+           set_message("EMAIL SENT!");
+           redirect("contact.php"); 
+        }
+    }
+}
+
+
+
+
 /* BACK END FUNCTIONS */
 
 ?>
