@@ -9,6 +9,7 @@
 
         <div class="row">
 
+        
             <!-- Categories -->
             <?php include(TEMPLATE_FRONT .  DS . "side_nav.php")?>
 

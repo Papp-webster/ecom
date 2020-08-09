@@ -2,6 +2,9 @@
 <?php include(TEMPLATE_FRONT .  DS . "header.php")?>
 
 
+
+
+
     <!-- Page Content -->
     <div class="container">
 
@@ -9,7 +12,7 @@
 <!-- /.row --> 
 
 <div class="row">
-
+ <h4 class="text-center bg-danger"><?php display_message(); ?></h4>
       <h1>Checkout</h1>
 
 <form action="">
