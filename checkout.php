@@ -2,7 +2,12 @@
 <?php include(TEMPLATE_FRONT .  DS . "header.php")?>
 
 
+<?php 
 
+$product1_test = $_SESSION['product_1'];
+
+
+?>
 
 
     <!-- Page Content -->
@@ -30,8 +35,10 @@
             <tr>
                 <td>apple</td>
                 <td>$23</td>
-                <td>3</td>
+                <td><?php echo $product1_test; ?></td>
                 <td>2</td>
+                <td><a href="cart.php?remove=1" class="btn btn-warning">Remove</a></td>
+                <td><a href="cart.php?delete=1" class="btn btn-danger">Delete</a></td>
               
             </tr>
         </tbody>
