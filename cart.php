@@ -43,4 +43,54 @@ if(isset($_GET['delete'])) {
     redirect("checkout.php");
 }
 
+function cart() {
+
+    foreach ($_SESSION as $name => $value) {
+
+        if($value > 0) {
+               
+        if(substr($name, 0, 8) == "product_") {
+
+            $length = strlen($name - 8);
+
+            $id = substr($name, 8, $length);
+
+            $query = query("SELECT * FROM products WHERE product_id = " . escape_string($id) . " ");
+       confirm($query);
+
+    while($row = fetch_array($query)) {
+
+        
+        $p_id = $row['product_id'];
+        $title = $row['product_title'];
+        $price = $row['product_price'];
+        $sub_total = $price * $value;
+        
+     $cart = <<<DELIMITER
+         <tr>
+                <td>{$title}</td>
+                <td>&#8364;{$price}</td>
+                <td>{$value}</td>
+                <td>&#8364;{$sub_total}</td>
+                <td><a href="cart.php?add={$p_id}" class="btn btn-success"><span class='glyphicon glyphicon-plus'></span></a></td>
+                <td><a href="cart.php?remove={$p_id}" class="btn btn-warning"><span class='glyphicon glyphicon-minus'></span></a></td>
+                <td><a href="cart.php?delete={$p_id}" class="btn btn-danger"><span class='glyphicon glyphicon-remove'></span></a></td>
+              
+            </tr>
+
+     DELIMITER;
+
+     echo $cart;
+    }
+
+        }
+
+        }
+        
+     
+    }
+
+  
+} // end cart function
+
 ?>
