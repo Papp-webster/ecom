@@ -14,7 +14,8 @@
         $query = query(" SELECT * FROM products WHERE product_id =" . escape_string($_GET['id']) . " ");
          confirm($query);
      
-      while($row = fetch_array($query)): 
+      while($row = fetch_array($query)):
+          $p_id = $row['product_id']; 
           $price = $row['product_price'];
           $title = $row['product_title'];
           $desc = $row['product_desc'];
@@ -58,12 +59,8 @@
           
         <p><?php echo $short; ?></p>
 
-   
-    <form action="">
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="ADD TO CART">
-        </div>
-    </form>
+        <a href="cart.php?add=<?php echo $p_id;?>" class="btn btn-primary">ADD TO CART</a>
+    
 
     </div>
  
