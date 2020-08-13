@@ -134,7 +134,7 @@ function get_prod_in_catpage() {
                         <h3>{$title}</h3>
                         <p>{$short}</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
+                            <a href="cart.php?add={$p_id}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ function get_prod_in_shop() {
                         <h3>{$title}</h3>
                         <p>{$short}</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
+                            <a href="cart.php?add={$p_id}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
