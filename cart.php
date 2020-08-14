@@ -123,6 +123,8 @@ function cart() {
   
 } // end cart function
 
+//paypal button
+
 function show_paypal() {
 
  if(isset($_SESSION['item_quantity'])) {
