@@ -19,6 +19,8 @@
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
   <input type="hidden" name="cmd" value="_cart">
   <input type="hidden" name="business" value="business.papp@gmail.com">
+  <input type="hidden" name="currency_code" value="EUR">
+  <input type="hidden" name="upload" value="1">
     <table class="table table-striped">
         <thead>
           <tr>
@@ -33,7 +35,7 @@
             <?php cart(); ?>
         </tbody>
     </table>
-    <input type="image" name="submit"
+    <input type="image" name="upload"
     src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
     alt="PayPal - The safer, easier way to pay online">
 </form>

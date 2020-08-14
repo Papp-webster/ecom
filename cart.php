@@ -77,6 +77,7 @@ function cart() {
         $p_id = $row['product_id'];
         $title = $row['product_title'];
         $price = $row['product_price'];
+        $product_quantity = $row['product_quantity'];
         $sub_total = $price * $value;
        $item_quantity += $value;
         
@@ -91,10 +92,11 @@ function cart() {
                 <td><a href="cart.php?delete={$p_id}" class="btn btn-danger"><span class='glyphicon glyphicon-remove'></span></a></td>
               
             </tr>
-            <input type="hidden" name="item_name_{$item_name}" value="hat">
-            <input type="hidden" name="item_number_{$item_number}" value="123">
-            <input type="hidden" name="amount_{$amount}" value="15.00">
-            <input type="hidden" name="quantity_{$quantity}" value="15.00">
+            <input type="hidden" name="item_name_{$item_name}" value="{$p_id}">
+            <input type="hidden" name="item_number_{$item_number}" value="{$p_id}">
+            <input type="hidden" name="amount_{$amount}" value="{$price}">
+            <input type="hidden" name="quantity_{$quantity}" value="{$value}">
+
      DELIMITER;
 
      echo $cart;
