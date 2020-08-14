@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Aug 09. 19:46
+-- Létrehozás ideje: 2020. Aug 14. 16:49
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -40,6 +40,20 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (1, 'example 1 '),
 (2, 'example 2');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `order_amount` float NOT NULL,
+  `order_tx` varchar(255) NOT NULL,
+  `order_status` varchar(255) NOT NULL,
+  `order_currency` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -98,6 +112,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`cat_id`);
 
 --
+-- A tábla indexei `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
 -- A tábla indexei `products`
 --
 ALTER TABLE `products`
@@ -118,6 +138,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `categories`
   MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT a táblához `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `products`
