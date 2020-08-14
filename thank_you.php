@@ -8,8 +8,11 @@ if(isset($_GET['tx'])) {
   $currency =  $_GET['cc'];
   $transaction =  $_GET['tx'];
   $status =  $_GET['st'];
+
+ 
+
 } else {
-    
+
     redirect("index.php");
 }
 
