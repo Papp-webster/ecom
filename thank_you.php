@@ -10,7 +10,9 @@ if(isset($_GET['tx'])) {
   $status =  $_GET['st'];
 
   $query = query("INSERT INTO orders (order_amount, order_tx, order_status, order_currency) VALUES ('{$amount}', '{$transaction}', '{$status}', '{$currency}')");
+ confirm($query);
 
+ session_destroy();
  
 
 } else {
