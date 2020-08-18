@@ -164,7 +164,7 @@ function process_transaction() {
     $length = strlen($name - 8);
     $id = substr($name, 8 , $length);
     
-    
+    // insert orders
     $send_order = query("INSERT INTO orders (order_amount, order_tx, order_status, order_currency ) VALUES('{$amount}', '{$transaction}','{$status}','{$currency}')");
     $last_id = last_id();
     confirm($send_order);
@@ -180,7 +180,7 @@ function process_transaction() {
     $sub = $row['product_price']*$value;
     $item_quantity +=$value;
     
-    
+    // insert reports
     $insert_report = query("INSERT INTO reports (product_id, order_id,  product_price, product_title, product_quantity) VALUES('{$id}','{$last_id}','{$product_price}','{$product_title}','{$value}')");
     confirm($insert_report);
     
