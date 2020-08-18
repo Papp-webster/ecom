@@ -5,7 +5,8 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 70px;
+    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .slide-image {
@@ -44,12 +45,31 @@ body {
 
 .thumbnail {
     padding: 0px;
-    
+
 }
 
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
+}
+
+.paypal {
+    text-align: left;
+    padding-bottom: 40px;
+}
+
+.paypal button {
+    display: inline-block;
+    padding: 10px 20px 7px 20px;
+    background-color: #FFC439;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 215px;
+}
+
+.paypal button:hover {
+    background-color: #f3bb37;
 }
 
 footer {

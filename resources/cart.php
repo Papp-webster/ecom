@@ -131,14 +131,93 @@ function show_paypal() {
 
     $paypal_button = <<<DELIMITER
     
-    <input type="image" name="upload"
-    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-    alt="PayPal - The safer, easier way to pay online">
+    <div class="paypal">
+    <button type="submit" name="paypal"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt="PayPal Logo"></button>
+     </div>
 
-    DELIMITER;
+DELIMITER;
     return $paypal_button;
 }
 
 }
+
+
+function process_transaction() {
+
+
+
+    if(isset($_GET['tx'])) {
+    
+    $amount = $_GET['amt'];
+    $currency = $_GET['cc'];
+    $transaction = $_GET['tx'];
+    $status = $_GET['st'];
+    $total = 0;
+    $item_quantity = 0;
+    
+    foreach ($_SESSION as $name => $value) {
+    
+    if($value > 0 ) {
+    
+    if(substr($name, 0, 8 ) == "product_") {
+    
+    $length = strlen($name - 8);
+    $id = substr($name, 8 , $length);
+    
+    
+    $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_currency, order_status ) VALUES('{$amount}', '{$transaction}','{$currency}','{$status}')");
+    $last_id =last_id();
+    confirm($send_order);
+    
+    
+    
+    $query = query("SELECT * FROM products WHERE product_id = " . escape_string($id). " ");
+    confirm($query);
+    
+    while($row = fetch_array($query)) {
+    $product_price = $row['product_price'];
+    $product_title = $row['product_title'];
+    $sub = $row['product_price']*$value;
+    $item_quantity +=$value;
+    
+    
+    $insert_report = query("INSERT INTO reports (product_id, order_id, product_title, product_price, product_quantity) VALUES('{$id}','{$last_id}','{$product_title}','{$product_price}','{$value}')");
+    confirm($insert_report);
+    
+    
+    
+    
+    
+    }
+    
+    
+    $total += $sub;
+    echo $item_quantity;
+    
+    
+               }
+    
+          }
+    
+        }
+    
+    session_destroy();
+      } else {
+    
+    
+    redirect("index.php");
+    
+    
+    }
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
 
 ?>
