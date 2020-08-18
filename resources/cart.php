@@ -165,8 +165,8 @@ function process_transaction() {
     $id = substr($name, 8 , $length);
     
     
-    $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_currency, order_status ) VALUES('{$amount}', '{$transaction}','{$currency}','{$status}')");
-    $last_id =last_id();
+    $send_order = query("INSERT INTO orders (order_amount, order_tx, order_status, order_currency ) VALUES('{$amount}', '{$transaction}','{$status}','{$currency}')");
+    $last_id = last_id();
     confirm($send_order);
     
     
@@ -181,12 +181,10 @@ function process_transaction() {
     $item_quantity +=$value;
     
     
-    $insert_report = query("INSERT INTO reports (product_id, order_id, product_title, product_price, product_quantity) VALUES('{$id}','{$last_id}','{$product_title}','{$product_price}','{$value}')");
+    $insert_report = query("INSERT INTO reports (product_id, order_id,  product_price, product_title, product_quantity) VALUES('{$id}','{$last_id}','{$product_price}','{$product_title}','{$value}')");
     confirm($insert_report);
     
-    
-    
-    
+   
     
     }
     
@@ -214,10 +212,6 @@ function process_transaction() {
     
     }
     
-    
-    
-    
-    
-    
+  
 
 ?>

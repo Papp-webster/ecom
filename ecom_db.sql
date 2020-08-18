@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Aug 14. 16:49
+-- Létrehozás ideje: 2020. Aug 18. 16:44
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -38,8 +38,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
-(1, 'example 1 '),
-(2, 'example 2');
+(1, 'Man clothes'),
+(2, 'Man shoes');
 
 -- --------------------------------------------------------
 
@@ -54,6 +54,15 @@ CREATE TABLE `orders` (
   `order_status` varchar(255) NOT NULL,
   `order_currency` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- A tábla adatainak kiíratása `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_amount`, `order_tx`, `order_status`, `order_currency`) VALUES
+(1, 223, '34221454', 'Completed', 'EUR'),
+(2, 223, '34221454', 'Completed', 'EUR'),
+(3, 223, '34221454', 'Completed', 'EUR');
 
 -- --------------------------------------------------------
 
@@ -77,8 +86,32 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_title`, `product_cat_id`, `product_price`, `product_quantity`, `product_desc`, `product_short`, `product_img`) VALUES
-(1, 'Flaneling', 1, 14.99, 3, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ', 'http://placehold.it/320x150'),
-(2, 'Sweater', 1, 11.99, 6, 'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ', 'http://placehold.it/320x150');
+(2, 'Sweater', 1, 11.99, 6, 'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ', 'http://placehold.it/320x150'),
+(3, 'Flanel shirt', 1, 18.99, 6, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.  ', 'http://placehold.it/320x150');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `reports`
+--
+
+CREATE TABLE `reports` (
+  `report_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_price` float NOT NULL,
+  `product_title` varchar(255) NOT NULL,
+  `product_quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- A tábla adatainak kiíratása `reports`
+--
+
+INSERT INTO `reports` (`report_id`, `order_id`, `product_id`, `product_price`, `product_title`, `product_quantity`) VALUES
+(1, 1, 3, 18.99, 'Flanel shirt', 1),
+(2, 2, 3, 18.99, 'Flanel shirt', 2),
+(3, 3, 2, 11.99, 'Sweater', 3);
 
 -- --------------------------------------------------------
 
@@ -124,6 +157,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- A tábla indexei `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`report_id`);
+
+--
 -- A tábla indexei `users`
 --
 ALTER TABLE `users`
@@ -143,13 +182,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT a táblához `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT a táblához `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `users`

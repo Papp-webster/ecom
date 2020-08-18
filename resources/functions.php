@@ -55,6 +55,11 @@ function fetch_array($result){
     return mysqli_fetch_array($result);
 }
 
+function last_id() {
+    global $connect;
+    return mysqli_insert_id($connect);
+}
+
 
 /* FRONT END FUNCTIONS */
 
