@@ -268,4 +268,36 @@ DELIMITER;
 
 }
 
+function display_products_admin() {
+    $query= query("SELECT * FROM products");
+    confirm($query);
+
+    while($row = fetch_array($query)) {
+        $product_id= $row['product_id'];
+        $product_title = $row['product_title'];
+        $product_cat_id = $row['product_cat_id'];
+        $product_price = $row['product_price'];
+        $product_quantity = $row['product_quantity'];
+        $product_img = $row['product_img'];
+
+        $product_view = <<<DELIMITER
+        <tr>  
+            <td>{$product_id}</td>
+            <td><img src="{$product_img}" alt="prod_pic" width = "100"></td>
+            <td>{$product_title}</td>
+            <td>{$product_cat_id}</td>
+            <td>{$product_price}</td>
+            <td>{$product_quantity}</td>
+            
+
+        </tr>
+           
+DELIMITER;
+
+     echo $product_view;
+
+    }
+
+}
+
 ?>
