@@ -1,6 +1,15 @@
-<?php require_once("../resources/config.php"); ?>
+<?php require_once("../../resources/config.php"); ?>
 
 <?php include(TEMPLATE_BACK . DS ."/header.php"); ?>
+
+<?php 
+
+if(!isset($_SESSION['username'])) {
+    redirect("../../shop");
+}
+
+
+?>
 
         <div id="page-wrapper">
 
@@ -24,7 +33,7 @@
 
                 <?php 
                 
-                if($_SERVER['REQUEST_URI'] == "/ecom/admin/" || $_SERVER['REQUEST_URI'] == "/ecom/admin/index.php") {
+                if($_SERVER['REQUEST_URI'] == "/ecom/shop/admin/" || $_SERVER['REQUEST_URI'] == "/ecom/shop/admin/index.php") {
                     include(TEMPLATE_BACK . DS ."/admin_content.php");
                 }
 

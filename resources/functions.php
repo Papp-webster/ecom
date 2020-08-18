@@ -82,7 +82,7 @@ function get_products() {
                                 </h4>
                                 <p>{$desc}</p>
                             </div>
-                            <a class="btn btn-primary" href="cart.php?add={$p_id}">Add to cart</a>
+                            <a class="btn btn-primary" href="../resources/cart.php?add={$p_id}">Add to cart</a>
                         </div>
                     </div>
         DELIMITER;
@@ -134,7 +134,7 @@ function get_prod_in_catpage() {
                         <h3>{$title}</h3>
                         <p>{$short}</p>
                         <p>
-                            <a href="cart.php?add={$p_id}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
+                            <a href="../resources/cart.php?add={$p_id}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ function get_prod_in_shop() {
                         <h3>{$title}</h3>
                         <p>{$short}</p>
                         <p>
-                            <a href="cart.php?add={$p_id}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
+                            <a href="../resources/cart.php?add={$p_id}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -182,6 +182,8 @@ function get_prod_in_shop() {
     }
 
 }
+
+// LOGIN USER
 
 function login_user() {
    if(isset($_POST['submit'])){
@@ -195,8 +197,9 @@ function login_user() {
        set_message("Your pass and username are wrong!");
        
     redirect("login.php");
-   } else{
-       //set_message("Welcome to admin panel {$username}");
+   } else {
+
+    $_SESSION['username'] = $username;
     redirect("admin");
    }
 

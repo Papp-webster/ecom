@@ -59,7 +59,7 @@
           
         <p><?php echo $short; ?></p>
 
-        <a href="cart.php?add=<?php echo $p_id;?>" class="btn btn-primary">ADD TO CART</a>
+        <a href="../resources/cart.php?add=<?php echo $p_id;?>" class="btn btn-primary">ADD TO CART</a>
     
 
     </div>

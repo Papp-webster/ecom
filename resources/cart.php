@@ -1,4 +1,4 @@
-<?php  require_once("./resources/config.php"); ?>
+<?php  require_once("config.php"); ?>
 
 <?php
 
@@ -13,11 +13,11 @@ while($row = fetch_array($query)){
     $title = $row['product_title'];
     if($quantity != $_SESSION['product_' . $_GET['add']]) {
         $_SESSION['product_' . $_GET['add']] +=1;
-        redirect("checkout.php");
+        redirect("../shop/checkout.php");
     }
     else {
  set_message("We only have " . $quantity . " {$title} " . "available");
- redirect("checkout.php");
+ redirect("../shop/checkout.php");
 }
  
 
@@ -31,10 +31,10 @@ if(isset($_GET['remove'])) {
         unset($_SESSION['item_total']);
         unset($_SESSION['item_quantity']);
         
-        redirect("checkout.php");
+        redirect("../shop/checkout.php");
     } else {
         
-        redirect("checkout.php");
+        redirect("../shop/checkout.php");
     }
 }
 
@@ -45,7 +45,7 @@ if(isset($_GET['delete'])) {
     unset($_SESSION['item_total']);
     unset($_SESSION['item_quantity']);
 
-    redirect("checkout.php");
+    redirect("../shop/checkout.php");
 
 }
 
@@ -87,9 +87,9 @@ function cart() {
                 <td>&#8364;{$price}</td>
                 <td>{$value}</td>
                 <td>&#8364;{$sub_total}</td>
-                <td><a href="cart.php?add={$p_id}" class="btn btn-success"><span class='glyphicon glyphicon-plus'></span></a></td>
-                <td><a href="cart.php?remove={$p_id}" class="btn btn-warning"><span class='glyphicon glyphicon-minus'></span></a></td>
-                <td><a href="cart.php?delete={$p_id}" class="btn btn-danger"><span class='glyphicon glyphicon-remove'></span></a></td>
+                <td><a href="../resources/cart.php?add={$p_id}" class="btn btn-success"><span class='glyphicon glyphicon-plus'></span></a></td>
+                <td><a href="../resources/cart.php?remove={$p_id}" class="btn btn-warning"><span class='glyphicon glyphicon-minus'></span></a></td>
+                <td><a href="../resources/cart.php?delete={$p_id}" class="btn btn-danger"><span class='glyphicon glyphicon-remove'></span></a></td>
               
             </tr>
             <input type="hidden" name="item_name_{$item_name}" value="{$p_id}">
