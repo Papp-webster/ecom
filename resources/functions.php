@@ -237,4 +237,33 @@ function send_message() {
 
 /* BACK END FUNCTIONS */
 
+
+function display_orders() {
+    $query= query("SELECT * FROM orders");
+    confirm($query);
+
+    while($row = fetch_array($query)) {
+        $order_id= $row['order_id'];
+        $order_amount = $row['order_amount'];
+        $order_tx= $row['order_tx'];
+        $order_currency= $row['order_currency'];
+        $order_status= $row['order_status'];
+
+        $orders = <<<DELIMITER
+        <tr>  
+            <td>$order_id</td>
+            <td>$order_amount</td>
+            <td>$order_tx</td>
+            <td>$order_currency</td>
+            <td>$order_status</td>
+            </tr>
+           
+     DELIMITER;
+
+     echo $orders;
+
+    }
+
+}
+
 ?>
