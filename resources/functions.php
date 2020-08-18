@@ -251,14 +251,16 @@ function display_orders() {
 
         $orders = <<<DELIMITER
         <tr>  
-            <td>$order_id</td>
-            <td>$order_amount</td>
-            <td>$order_tx</td>
-            <td>$order_currency</td>
-            <td>$order_status</td>
-            </tr>
+            <td>{$order_id}</td>
+            <td>{$order_amount}</td>
+            <td>{$order_tx}</td>
+            <td>{$order_currency}</td>
+            <td>{$order_status}</td>
+            <td><a href="../../resources/templates/back/delete_order.php?id={$order_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+
+        </tr>
            
-     DELIMITER;
+DELIMITER;
 
      echo $orders;
 

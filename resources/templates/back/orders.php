@@ -8,6 +8,8 @@
    All Orders
 
 </h1>
+
+<h4 class="text-center bg-success"><?php display_message(); ?></h4>
 </div>
 
 <div class="row">
@@ -20,6 +22,7 @@
            <th>Transactions</th>
            <th>Currency</th>
            <th>Status</th>
+           <th>Delete</th>
       </tr>
     </thead>
     <tbody>
