@@ -1,10 +1,4 @@
-<?php  require_once("../resources/config.php"); ?>
-<?php include(TEMPLATE_BACK .  DS . "header.php")?>
-
-        
-            
-
-            
+    
 
 <h1 class="page-header">
   Product Categories

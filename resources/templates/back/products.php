@@ -1,10 +1,8 @@
-<?php  require_once("../resources/config.php"); ?>
-<?php include(TEMPLATE_BACK .  DS . "header.php")?>
+
 
 
         
-             <div class="row">
-
+            
 <h1 class="page-header">
    All Products
 
@@ -42,6 +40,6 @@
 
 
 
-             </div>
+            
 
             
