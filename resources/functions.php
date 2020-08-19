@@ -283,11 +283,12 @@ function display_products_admin() {
         $product_view = <<<DELIMITER
         <tr>  
             <td>{$product_id}</td>
-            <td><img src="{$product_img}" alt="prod_pic" width = "100"></td>
+            <td><a href="index.php?edit_product&id={$product_id}"><img src="{$product_img}" alt="prod_pic" width = "100"></a></td>
             <td>{$product_title}</td>
             <td>{$product_cat_id}</td>
             <td>{$product_price}</td>
             <td>{$product_quantity}</td>
+            <td><a href="../../resources/templates/back/delete_product.php?id={$product_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
             
 
         </tr>
