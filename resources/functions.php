@@ -171,7 +171,7 @@ function get_prod_in_shop() {
             
         <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <a href="item.php?id={$p_id}"><img src="../../resource/uploads/{$img}" alt="pic"></a>
+                    <a href="item.php?id={$p_id}"><img src="../../resources/img/{$img}" alt="pic"></a>
                     <div class="caption">
                         <h3>{$title}</h3>
                         <p>{$short}</p>
@@ -292,7 +292,7 @@ function display_products_admin() {
         $product_view = <<<DELIMITER
         <tr>  
             <td>{$product_id}</td>
-            <td><a href="index.php?edit_product&id={$product_id}"><img src="../../resource/uploads/{$product_img}" alt="prod_pic" width = "100"></a></td>
+            <td><a href="index.php?edit_product&id={$product_id}"><img src="../../resources/uploads/{$product_img}" alt="prod_pic" width = "100"></a></td>
             <td>{$product_title}</td>
             <td>{$category}</td>
             <td>{$product_price}</td>
@@ -339,7 +339,7 @@ function add_products() {
      $product_img = escape_string($_FILES['file']['name']);
      $image_temp_loc = escape_string($_FILES['file']['tmp_name']);
 
-     move_uploaded_file($image_temp_loc, UPLOAD_FOLDER . DS . $product_img);
+    move_uploaded_file($image_temp_loc , UPLOAD_FOLDER . DS . $product_img);
 
      $query = query("INSERT INTO products(product_title, product_cat_id, product_price, product_quantity, product_desc, product_short, product_img) VALUES ('{$product_title}', '{$product_cat_id}', '{$product_price}', '{$product_quantity}', '{$product_desc}', '{$product_short}', '{$product_img}')");
      
