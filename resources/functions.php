@@ -116,6 +116,7 @@ function get_categories() {
 
      }
 }
+
 function get_prod_in_catpage() {
     
     $result = query(" SELECT * FROM products WHERE product_cat_id= " . escape_string($_GET['id']) . " ");
@@ -170,7 +171,7 @@ function get_prod_in_shop() {
             
         <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <a href="item.php?id={$p_id}"><img src="{$img}" alt="pic"></a>
+                    <a href="item.php?id={$p_id}"><img src="../../resource/uploads/{$img}" alt="pic"></a>
                     <div class="caption">
                         <h3>{$title}</h3>
                         <p>{$short}</p>
@@ -268,11 +269,17 @@ DELIMITER;
 
 }
 
+/* ADMIN PRODUCTS */
+
 function display_products_admin() {
+    
     $query= query("SELECT * FROM products");
     confirm($query);
 
     while($row = fetch_array($query)) {
+
+        
+
         $product_id= $row['product_id'];
         $product_title = $row['product_title'];
         $product_cat_id = $row['product_cat_id'];
@@ -280,12 +287,14 @@ function display_products_admin() {
         $product_quantity = $row['product_quantity'];
         $product_img = $row['product_img'];
 
+        $category = show_prod_categories_title($product_cat_id);
+
         $product_view = <<<DELIMITER
         <tr>  
             <td>{$product_id}</td>
-            <td><a href="index.php?edit_product&id={$product_id}"><img src="{$product_img}" alt="prod_pic" width = "100"></a></td>
+            <td><a href="index.php?edit_product&id={$product_id}"><img src="../../resource/uploads/{$product_img}" alt="prod_pic" width = "100"></a></td>
             <td>{$product_title}</td>
-            <td>{$product_cat_id}</td>
+            <td>{$category}</td>
             <td>{$product_price}</td>
             <td>{$product_quantity}</td>
             <td><a href="../../resources/templates/back/delete_product.php?id={$product_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
@@ -302,9 +311,24 @@ DELIMITER;
 }
 
 
+function show_prod_categories_title($product_category) {
+
+$category_query = query("SELECT * FROM categories WHERE cat_id = '{$product_category}' ");
+confirm($category_query);
+
+while($category_row = fetch_array($category_query)) {
+
+    return $category_row['cat_title'];
+
+}
+
+}
+
+
 /* ADD PRODUCTS */
 
 function add_products() {
+    
     if(isset($_POST['publish'])) {
      $product_title = escape_string($_POST['product_title']);
      $product_cat_id = escape_string($_POST['product_cat_id']);
@@ -327,6 +351,25 @@ function add_products() {
 
 
     }
+}
+
+function show_categories() {
+
+    global $connect;
+    $query = query("SELECT * FROM categories");
+    confirm($query);
+     
+    while($row = fetch_array($query)) {
+        $cat_id = $row['cat_id'];
+        $title = $row['cat_title'];
+         $category_option = <<<DELIMITER
+         <option value="{$cat_id}">{$title}</option>
+         
+         DELIMITER;
+
+         echo $category_option;
+
+     }
 }
 
 ?>
