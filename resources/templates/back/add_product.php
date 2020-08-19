@@ -1,6 +1,6 @@
 
 
-
+<?php add_products(); ?>
 
 <div class="col-md-12">
 
