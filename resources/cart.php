@@ -77,13 +77,16 @@ function cart() {
         $p_id = $row['product_id'];
         $title = $row['product_title'];
         $price = $row['product_price'];
+        $img = $row['product_img'];
         $product_quantity = $row['product_quantity'];
         $sub_total = $price * $value;
-       $item_quantity += $value;
+        $item_quantity += $value;
+        $show_img= display_image($img);
         
      $cart = <<<DELIMITER
          <tr>
                 <td>{$title}</td>
+                <td><img src="../resources/{$show_img}" width = "100"></td>
                 <td>&#8364;{$price}</td>
                 <td>{$value}</td>
                 <td>&#8364;{$sub_total}</td>

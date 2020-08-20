@@ -24,6 +24,7 @@
         <thead>
           <tr>
            <th>Product</th>
+           <th>Picture</th>
            <th>Price</th>
            <th>Quantity</th>
            <th>Sub-total</th>

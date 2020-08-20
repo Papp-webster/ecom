@@ -91,7 +91,7 @@ function get_products() {
                                 </h4>
                                 <p>{$desc}</p>
                             </div>
-                            <a class="btn btn-primary" href="../resources/cart.php?add={$p_id}">Add to cart</a>
+                            <a class="btn btn-primary" href="../resources/cart.php?add={$p_id}">Add to cart</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
                         </div>
                     </div>
         DELIMITER;
