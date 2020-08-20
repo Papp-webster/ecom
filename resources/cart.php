@@ -108,11 +108,13 @@ function cart() {
      $item_number++;
      $amount++;
      $quantity++;
+
+     $_SESSION['item_total'] = $total += $sub_total;
+     $_SESSION['item_quantity'] = $item_quantity;
     
       }
 
-      $_SESSION['item_total'] = $total += $sub_total;
-      $_SESSION['item_quantity'] = $item_quantity;
+      
 
       
 
