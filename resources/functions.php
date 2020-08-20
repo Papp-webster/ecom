@@ -1,5 +1,7 @@
 <?php
 
+$upload_directory = "uploads";
+
 // Helper functions
 
 function set_message($msg) {
@@ -77,10 +79,12 @@ function get_products() {
         $desc = $row['product_desc'];
         $img = $row['product_img'];
 
+        $product_photo = display_image($img);
+
         $product = <<<DELIMITER
          <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <a href="item.php?id={$p_id}"><img src="{$img}" alt="pic"></a>
+                            <a href="item.php?id={$p_id}"><img src="../resources/{$product_photo}" alt="pic"></a>
                             <div class="caption">
                                 <h4 class="pull-right">&#8364;{$price}</h4>
                                 <h4><a href="item.php?id={$p_id}">{$title}</a>
@@ -131,11 +135,13 @@ function get_prod_in_catpage() {
         $short = $row['product_short'];
         $img = $row['product_img'];
 
+        $product_photo = display_image($img);
+
         $cat_product = <<<DELIMITER
             
         <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <a href="item.php?id={$p_id}"><img src="{$img}" alt="pic"></a>
+                    <a href="item.php?id={$p_id}"><img src="../resources/{$product_photo}" alt="pic"></a>
                     <div class="caption">
                         <h3>{$title}</h3>
                         <p>{$short}</p>
@@ -167,11 +173,13 @@ function get_prod_in_shop() {
         $short = $row['product_short'];
         $img = $row['product_img'];
 
+        $product_photo = display_image($img);
+
         $cat_product = <<<DELIMITER
             
         <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <a href="item.php?id={$p_id}"><img src="../../resources/img/{$img}" alt="pic"></a>
+                    <a href="item.php?id={$p_id}"><img src="../resources/{$product_photo}" alt="pic"></a>
                     <div class="caption">
                         <h3>{$title}</h3>
                         <p>{$short}</p>
@@ -272,7 +280,9 @@ DELIMITER;
 /* ADMIN PRODUCTS */
 
 function display_image($picture) {
-return "uploads" . DS . $picture;
+
+    global $upload_directory;
+return $upload_directory . DS . $picture;
 }
 
 function display_products_admin() {
@@ -293,10 +303,12 @@ function display_products_admin() {
 
         $category = show_prod_categories_title($product_cat_id);
 
+        $product_photo = display_image($product_img);
+
         $product_view = <<<DELIMITER
         <tr>  
             <td>{$product_id}</td>
-            <td><a href="index.php?edit_product&id={$product_id}"><img src="../../resources/uploads/{$product_img}" alt="prod_pic" width = "100"></a></td>
+            <td><a href="index.php?edit_product&id={$product_id}"><img src="../../resources/{$product_photo}" alt="prod_pic" width = "100"></a></td>
             <td>{$product_title}</td>
             <td>{$category}</td>
             <td>{$product_price}</td>
@@ -366,7 +378,8 @@ function show_categories() {
     while($row = fetch_array($query)) {
         $cat_id = $row['cat_id'];
         $title = $row['cat_title'];
-         $category_option = <<<DELIMITER
+         
+        $category_option = <<<DELIMITER
          <option value="{$cat_id}">{$title}</option>
          
          DELIMITER;
