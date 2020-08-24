@@ -352,8 +352,8 @@ function add_products() {
      $product_short = escape_string($_POST['product_short']);
      $product_quantity = escape_string($_POST['product_quantity']);
      $product_price = escape_string($_POST['product_price']);
-     $product_image = escape_string($_FILES['file']['name']);
-     $image_temp_loc = escape_string($_FILES['file']['tmp_name']);
+     $product_image = escape_string($_FILES['image']['name']);
+     $image_temp_loc = escape_string($_FILES['image']['tmp_name']);
 
      $location = "uploads";
 
@@ -391,6 +391,38 @@ function show_categories() {
          echo $category_option;
 
      }
+}
+
+
+/* Edit PRODUCTS */
+
+function update_products() {
+    
+    if(isset($_POST['update'])) {
+     $product_title = escape_string($_POST['product_title']);
+     $product_cat_id = escape_string($_POST['product_cat_id']);
+     $product_desc = escape_string($_POST['product_desc']);
+     $product_short = escape_string($_POST['product_short']);
+     $product_quantity = escape_string($_POST['product_quantity']);
+     $product_price = escape_string($_POST['product_price']);
+     $product_image = escape_string($_FILES['image']['name']);
+     $image_temp_loc = escape_string($_FILES['image']['tmp_name']);
+
+     $location = "uploads";
+
+    move_uploaded_file($image_temp_loc , "$location/$product_image" );
+
+    echo "$product_image";
+
+     $query = "UPDATE products SET product_title = '{$product_title}', product_cat_id = '{$product_cat_id}', product_price = '{$product_price}', product_quantity =  '{$product_quantity}', product_desc = '{$product_desc}', product_short = '{$product_short}', product_img = '{$product_image}' WHERE product_id = ". escape_string($_GET['id']) ." ";
+     
+     confirm($query);
+     set_message("This product updated!");
+     redirect("index.php?products");
+     
+
+
+    }
 }
 
 ?>
