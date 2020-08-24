@@ -355,13 +355,17 @@ function add_products() {
      $product_image = escape_string($_FILES['file']['name']);
      $image_temp_loc = escape_string($_FILES['file']['tmp_name']);
 
-    move_uploaded_file($image_temp_loc , UPLOAD_FOLDER . DS . $product_image);
+     $location = "uploads";
+
+    move_uploaded_file($image_temp_loc , "$location/$product_image" );
+
+    echo "$product_image";
 
      $query = query("INSERT INTO products(product_title, product_cat_id, product_price, product_quantity, product_desc, product_short, product_img) VALUES ('{$product_title}', '{$product_cat_id}', '{$product_price}', '{$product_quantity}', '{$product_desc}', '{$product_short}', '{$product_image}')");
      
      $last_id = last_id();
      confirm($query);
-     set_message("New product with {$last_id} added!");
+     set_message("New product number {$last_id} added!");
      redirect("index.php?products");
      
 

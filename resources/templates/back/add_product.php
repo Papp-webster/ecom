@@ -106,7 +106,7 @@
     
     <div class="form-group">
         <label for="product-title">Product Image</label>
-        <input type="file" name="file">
+        <input type="file" class="form-control-file" name="file">
       
     </div>
 
