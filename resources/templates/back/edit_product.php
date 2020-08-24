@@ -13,14 +13,14 @@ if(isset($_GET['id'])) {
         $title = $row['product_title'];
         $product_cat_id = $row['product_cat_id'];
         $price = $row['product_price'];
+        $product_quantity = $row['product_quantity'];
         $desc = $row['product_desc'];
         $short = $row['product_short'];
-        $product_quantity = $row['product_quantity'];
         $img = $row['product_img'];
 
-
-}
 $product_img = display_image($img);
+}
+
 update_products(); 
 
 }
@@ -100,7 +100,7 @@ update_products();
          <label for="product-title">Product Category</label>
           
         <select name="product_cat_id" id="" class="form-control">
-        <option value="">Select Category</option>
+        <option value="<?php echo $product_cat_id; ?>">  <?php echo show_prod_categories_title($product_cat_id); ?> </option>
             <?php show_categories(); ?>
            
         </select>
@@ -124,7 +124,7 @@ update_products();
         <label for="product-title">Product Image</label>
         <input type="file" name="image">
 
-        <img src="../../resources/<?php echo $product_img ?>" alt="prod_img" width="100"/>
+        <img src="../../resources/<?php echo $product_img; ?>" alt="prod_img" width="100"/>
       
     </div>
 

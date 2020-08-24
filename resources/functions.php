@@ -313,6 +313,7 @@ function display_products_admin() {
             <td>{$category}</td>
             <td>{$product_price}</td>
             <td>{$product_quantity}</td>
+            <td><a href="index.php?edit_product&id={$product_id}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></td>
             <td><a href="../../resources/templates/back/delete_product.php?id={$product_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
             
 
@@ -401,18 +402,29 @@ function update_products() {
     if(isset($_POST['update'])) {
      $product_title = escape_string($_POST['product_title']);
      $product_cat_id = escape_string($_POST['product_cat_id']);
+     $product_price = escape_string($_POST['product_price']);
+     $product_quantity = escape_string($_POST['product_quantity']);
      $product_desc = escape_string($_POST['product_desc']);
      $product_short = escape_string($_POST['product_short']);
-     $product_quantity = escape_string($_POST['product_quantity']);
-     $product_price = escape_string($_POST['product_price']);
      $product_image = escape_string($_FILES['image']['name']);
      $image_temp_loc = escape_string($_FILES['image']['tmp_name']);
 
      $location = "uploads";
 
+     if(empty($product_image)) {
+         $get_pic = query("SELECT product_img FROM products WHERE product_id = ". escape_string($_GET['id']) ." ");
+         confirm($get_pic);
+         
+         while($pic = fetch_array($get_pic)) {
+             
+            $product_image = $pic['product_img'];
+
+         }
+     }
+
     move_uploaded_file($image_temp_loc , "$location/$product_image" );
 
-    echo "$product_image";
+   
 
      $query = "UPDATE products SET product_title = '{$product_title}', product_cat_id = '{$product_cat_id}', product_price = '{$product_price}', product_quantity =  '{$product_quantity}', product_desc = '{$product_desc}', product_short = '{$product_short}', product_img = '{$product_image}' WHERE product_id = ". escape_string($_GET['id']) ." ";
      $send_query = query($query);

@@ -21,6 +21,8 @@
            <th>Category</th>
            <th>Price</th>
            <th>Quantity</th>
+           <th>Edit</th>
+           <th>Delete</th>
       </tr>
     </thead>
     <tbody>
