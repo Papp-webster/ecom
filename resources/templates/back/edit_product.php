@@ -6,10 +6,11 @@
 
 
 if(isset($_GET['id'])) {
- $query = query("SELECT * FROM products WHERE  product_id = ". escape_string($_GET['id']) ." ");
+ 
+  $query = query("SELECT * FROM products WHERE  product_id = " . escape_string($_GET['id']) . " ");
  confirm($query);
 
- while($row = fetch_array($query)){
+ while($row = fetch_array($query)) {
         $title = $row['product_title'];
         $product_cat_id = $row['product_cat_id'];
         $price = $row['product_price'];
@@ -19,6 +20,7 @@ if(isset($_GET['id'])) {
         $img = $row['product_img'];
 
 $product_img = display_image($img);
+
 }
 
 update_products(); 
