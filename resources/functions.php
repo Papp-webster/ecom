@@ -400,11 +400,12 @@ function show_categories() {
 function update_products() {
     
     if(isset($_POST['update'])) {
+     
      $product_title = escape_string($_POST['product_title']);
      $product_cat_id = escape_string($_POST['product_cat_id']);
      $product_price = escape_string($_POST['product_price']);
      $product_quantity = escape_string($_POST['product_quantity']);
-     $product_desc = escape_string($_POST['product_desc']);
+     $product_description = escape_string($_POST['product_desc']);
      $product_short = escape_string($_POST['product_short']);
      $product_image = escape_string($_FILES['image']['name']);
      $image_temp_loc = escape_string($_FILES['image']['tmp_name']);
@@ -426,7 +427,7 @@ function update_products() {
 
    
 
-     $query = "UPDATE products SET product_title = '{$product_title}', product_cat_id = '{$product_cat_id}', product_price = '{$product_price}', product_quantity =  '{$product_quantity}', product_desc = '{$product_desc}', product_short = '{$product_short}', product_img = '{$product_image}' WHERE product_id = ". escape_string($_GET['id']) ." ";
+     $query = "UPDATE products SET product_title = '{$product_title}', product_cat_id = '{$product_cat_id}', product_price = '{$product_price}', product_quantity =  '{$product_quantity}', product_desc = '{$product_description}', product_short = '{$product_short}', product_img = '{$product_image}' WHERE product_id = ". escape_string($_GET['id']) ." ";
      $send_query = query($query);
      confirm($send_query);
      set_message("This product updated!");

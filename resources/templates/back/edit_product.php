@@ -126,7 +126,7 @@ update_products();
         <label for="product-title">Product Image</label>
         <input type="file" name="image">
 
-        <img src="../../resources/<?php echo $product_img; ?>" alt="prod_img" width="100"/>
+        <img src="../../resources/<?php echo $product_img; ?>" alt="prod_img" width="200"/>
       
     </div>
 
