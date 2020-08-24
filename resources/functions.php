@@ -425,10 +425,20 @@ function update_products() {
 
     move_uploaded_file($image_temp_loc , "$location/$product_image" );
 
-   
+$query = "UPDATE products SET ";
+$query .= "product_title            = '{$product_title}', ";
+$query .= "product_cat_id           = '{$product_cat_id}', ";
+$query .= "product_price            = '{$product_price}', ";
+$query .= "product_quantity         = '{$product_quantity}', ";
+$query .= "product_desc             = '{$product_description}', ";
+$query .= "product_short            = '{$product_short}', ";
+$query .= "product_img              = '{$product_image}'          ";
+$query .= "WHERE product_id=" . escape_string($_GET['id']);
 
-     $query = "UPDATE products SET product_title = '{$product_title}', product_cat_id = '{$product_cat_id}', product_price = '{$product_price}', product_quantity =  '{$product_quantity}', product_desc = '{$product_description}', product_short = '{$product_short}', product_img = '{$product_image}' WHERE product_id = ". escape_string($_GET['id']) ." ";
-     $send_query = query($query);
+     
+     
+    
+    $send_query = query($query);
      confirm($send_query);
      set_message("This product updated!");
      redirect("index.php?products");

@@ -57,7 +57,7 @@ update_products();
 
     <div class="form-group">
            <label for="product-title">Product Description</label>
-      <textarea name="product_description" id="" cols="30" rows="10" class="form-control"><?php echo $desc; ?></textarea>
+      <textarea name="product_desc" id="" cols="30" rows="10" class="form-control"><?php echo $desc; ?></textarea>
     </div>
 
     <div class="form-group">
