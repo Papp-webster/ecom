@@ -184,7 +184,7 @@ function get_prod_in_catpage() {
 
 function get_prod_in_shop() {
     
-    $result = query(" SELECT * FROM products");
+    $result = query("SELECT * FROM products");
 
     confirm($result);
 
@@ -304,7 +304,7 @@ DELIMITER;
 
 function display_image($picture) {
 
-    global $upload_directory;
+global $upload_directory;
 return $upload_directory . DS . $picture;
 }
 
@@ -377,11 +377,11 @@ function add_products() {
      $product_quantity = escape_string($_POST['product_quantity']);
      $product_price = escape_string($_POST['product_price']);
      $product_image = escape_string($_FILES['image']['name']);
-     $image_temp_loc = escape_string($_FILES['image']['tmp_name']);
+     $image_temp_location = escape_string($_FILES['image']['tmp_name']);
 
-     $location = "uploads";
+     
 
-    move_uploaded_file($image_temp_loc , "$location/$product_image" );
+    move_uploaded_file($image_temp_location  , UPLOAD_DIRECTORY . DS . $product_image);
 
     echo "$product_image";
 
