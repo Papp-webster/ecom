@@ -1,14 +1,7 @@
 <div class="col-md-3">
     <p class="lead">Categories</p>
     <div class="list-group">
-     <?php
-     
-     get_categories();
-     
-     ?>
-
-
-
+     <?php get_categories_side(); ?> 
 
 
         

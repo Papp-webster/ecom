@@ -102,9 +102,9 @@ function get_products() {
 }
 
 
-function get_categories() {
+function get_categories_menu() {
 
-    global $connect;
+    
     $query = query("SELECT * FROM categories");
     confirm($query);
      
@@ -112,11 +112,34 @@ function get_categories() {
         $cat_id = $row['cat_id'];
         $title = $row['cat_title'];
          $category_link = <<<DELIMITER
-          <a href='category.php?id={$cat_id}' class='list-group-item'>{$title}</a>
+         <li><a href="category.php?id={$cat_id}">{$title}</a></li>
+                  
+          
          
          DELIMITER;
 
          echo $category_link;
+
+     }
+}
+
+function get_categories_side() {
+
+    
+    $query = query("SELECT * FROM categories");
+    confirm($query);
+     
+    while($row = fetch_array($query)) {
+        $cat_id = $row['cat_id'];
+        $title = $row['cat_title'];
+         $category_side = <<<DELIMITER
+         
+                  
+          <a href='category.php?id={$cat_id}' class='list-group-item'>{$title}</a>
+         
+         DELIMITER;
+
+         echo $category_side;
 
      }
 }
@@ -446,6 +469,54 @@ $query .= "WHERE product_id=" . escape_string($_GET['id']);
 
 
     }
+}
+
+/* Categories in admin */
+
+function show_categories_in_admin() {
+
+    $cat_query = query("SELECT * FROM categories");
+    confirm($cat_query);
+
+    while($row = fetch_array($cat_query)) {
+     $cat_id = $row['cat_id'];
+     $cat_title = $row['cat_title'];
+
+     $category = <<<EOF
+     <tr>
+            <td>{$cat_id}</td>
+            <td>{$cat_title}</td>
+            <td><a href="../../resources/templates/back/delete_category.php?id={$cat_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+        </tr>
+     
+     
+     EOF;
+     
+     echo $category;
+    }
+
+}
+
+function add_category_in_admin() {
+
+
+    if(isset($_POST['add_category'])) {
+     $cat_title = escape_string($_POST['cat_title']);
+     
+     if(empty($cat_title) || $cat_title == " "){
+       echo "<p class =' text-center bg-warning'>This field cannot be empty!</p>";
+     } else{
+    
+     
+     $insert_query = query("INSERT INTO categories(cat_title) VALUES('{$cat_title}') ");
+     confirm($insert_query);
+     set_message("Category created!");
+     
+
+     }
+
+    }
+    
 }
 
 ?>
