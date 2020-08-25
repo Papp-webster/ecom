@@ -25,6 +25,7 @@
                                         <th>Id</th>
                                         <th>Username</th>
                                         <th>Email</th>
+                                        <th>Photo</th>
                                         <th>Delete </th>
                                     </tr>
                                 </thead>

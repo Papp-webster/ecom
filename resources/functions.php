@@ -597,5 +597,70 @@ redirect("index.php?users");
 
 }
 
+function display_reports_admin() {
+    $report_query= query("SELECT * FROM reports");
+    confirm($report_query);
+
+    while($row = fetch_array($report_query)) {
+
+        
+
+        $report_id= $row['report_id'];
+        $order_id= $row['order_id'];
+        $product_id= $row['product_id'];
+        $product_title = $row['product_title'];
+        $product_price = $row['product_price'];
+        $product_quantity = $row['product_quantity'];
+        
+
+        
+
+        $reports_view = <<<DELIMITER
+        <tr>  
+            <td>{$report_id}</td>
+             <td>{$order_id}</td>
+              <td>{$product_id}</td>
+            <td>{$product_price}</td>
+            <td>{$product_title}</td>
+            <td>{$product_quantity}</td>
+            <td><a href="../../resources/templates/back/delete_report.php?id={$report_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+            
+
+        </tr>
+           
+DELIMITER;
+
+     echo $reports_view;
+
+    }
+}
+
+
+/********** SLIDER *****************/
+
+function add_slides() {
+
+
+}
+
+function get_current_slide() {
+
+
+}
+
+function get_active() {
+
+
+}
+
+function get_slides() {
+
+
+}
+
+function get_slide_thumbnails() {
+
+
+}
 
 ?>

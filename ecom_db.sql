@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Aug 18. 16:44
--- Kiszolgáló verziója: 10.4.6-MariaDB
--- PHP verzió: 7.3.8
+-- Létrehozás ideje: 2020. Aug 25. 16:32
+-- Kiszolgáló verziója: 10.1.37-MariaDB
+-- PHP verzió: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,7 +39,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (1, 'Man clothes'),
-(2, 'Man shoes');
+(2, 'Man shoes'),
+(3, 'Man sweater');
 
 -- --------------------------------------------------------
 
@@ -61,8 +62,7 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`order_id`, `order_amount`, `order_tx`, `order_status`, `order_currency`) VALUES
 (1, 223, '34221454', 'Completed', 'EUR'),
-(2, 223, '34221454', 'Completed', 'EUR'),
-(3, 223, '34221454', 'Completed', 'EUR');
+(2, 223, '34221454', 'Completed', 'EUR');
 
 -- --------------------------------------------------------
 
@@ -86,8 +86,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_title`, `product_cat_id`, `product_price`, `product_quantity`, `product_desc`, `product_short`, `product_img`) VALUES
-(2, 'Sweater', 1, 11.99, 6, 'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ', 'http://placehold.it/320x150'),
-(3, 'Flanel shirt', 1, 18.99, 6, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.  ', 'http://placehold.it/320x150');
+(4, 'LONG SLEEVE T-SHIRT', 1, 15, 28, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ', 'adult.jpg'),
+(5, 'Sweatersss', 1, 18, 24, 'Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. ', 'Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. ', 'sweeter.jpg'),
+(6, 'Side T-shirt', 1, 22, 23, 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. ', 'bb.jpg'),
+(7, 'Sweet Sweat', 3, 16, 30, 'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.', 'A wonderful serenity has taken possession of my entire soul,', 'sweet.jpg'),
+(8, 'Casual T-shirt', 3, 12, 11, 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. ', 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts', 'casual.jpg');
 
 -- --------------------------------------------------------
 
@@ -109,9 +112,20 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`report_id`, `order_id`, `product_id`, `product_price`, `product_title`, `product_quantity`) VALUES
-(1, 1, 3, 18.99, 'Flanel shirt', 1),
 (2, 2, 3, 18.99, 'Flanel shirt', 2),
 (3, 3, 2, 11.99, 'Sweater', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `slides`
+--
+
+CREATE TABLE `slides` (
+  `slide_id` int(11) NOT NULL,
+  `slide_title` varchar(255) NOT NULL,
+  `slide_img` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -123,16 +137,16 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `user_photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `email`, `password`) VALUES
-(1, 'valuk', 'valuk@gmail.com', '223'),
-(2, 'jhon', 'jhon@gmail.com', '556');
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `user_photo`) VALUES
+(3, 'lezz', 'papp.laszlo.web@gmail.com', '112', 'attractive.jpg');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -163,6 +177,12 @@ ALTER TABLE `reports`
   ADD PRIMARY KEY (`report_id`);
 
 --
+-- A tábla indexei `slides`
+--
+ALTER TABLE `slides`
+  ADD PRIMARY KEY (`slide_id`);
+
+--
 -- A tábla indexei `users`
 --
 ALTER TABLE `users`
@@ -176,7 +196,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `orders`
@@ -188,7 +208,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT a táblához `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `reports`
@@ -197,10 +217,16 @@ ALTER TABLE `reports`
   MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT a táblához `slides`
+--
+ALTER TABLE `slides`
+  MODIFY `slide_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
