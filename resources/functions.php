@@ -383,7 +383,7 @@ function add_products() {
 
     move_uploaded_file($image_temp_location  , UPLOAD_DIRECTORY . DS . $product_image);
 
-    echo "$product_image";
+    
 
      $query = query("INSERT INTO products(product_title, product_cat_id, product_price, product_quantity, product_desc, product_short, product_img) VALUES ('{$product_title}', '{$product_cat_id}', '{$product_price}', '{$product_quantity}', '{$product_desc}', '{$product_short}', '{$product_image}')");
      
@@ -518,5 +518,84 @@ function add_category_in_admin() {
     }
     
 }
+
+/************************ADMIN users***********************/
+
+
+
+function display_users() {
+
+
+$user_query = query("SELECT * FROM users");
+confirm($user_query);
+
+
+while($row = fetch_array($user_query)) {
+
+$user_id = $row['user_id'];
+$username = $row['username'];
+$email = $row['email'];
+$password = $row['password'];
+$photo = $row['user_photo'];
+
+$user_photo = display_image($photo);
+
+$user = <<<DELIMETER
+
+
+<tr>
+    <td>{$user_id}</td>
+    <td>{$username}</td>
+     <td>{$email}</td>
+     <td><img src="../../resources/{$user_photo}" alt="user_pic" width = "100"></td>
+    <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$user_id}"><span class="glyphicon glyphicon-remove"></span></a></td>
+</tr>
+
+
+
+DELIMETER;
+
+echo $user;
+
+
+
+    }
+
+
+
+}
+
+
+function add_user() {
+
+
+if(isset($_POST['add_user'])) {
+
+
+$username   = escape_string($_POST['username']);
+$email      = escape_string($_POST['email']);
+$password   = escape_string($_POST['password']);
+$user_photo = escape_string($_FILES['file']['name']);
+$photo_temp = escape_string($_FILES['file']['tmp_name']);
+
+
+move_uploaded_file($photo_temp, UPLOAD_DIRECTORY . DS . $user_photo);
+
+
+$users_query = query("INSERT INTO users(username,email,password, user_photo) VALUES('{$username}','{$email}','{$password}', '{$user_photo}')");
+confirm($users_query);
+
+set_message("USER CREATED");
+
+redirect("index.php?users");
+
+
+
+}
+
+
+
+}
+
 
 ?>
