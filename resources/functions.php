@@ -655,7 +655,22 @@ function get_active() {
 
 function get_slides() {
 
+    $query = query("SELECT * FROM slides");
+    confirm($query);
 
+    while($row = fetch_array($query)) {
+        $slide_id = $row['slide_id'];
+
+        $slides = <<<EOF
+         <div class="item">
+         <img class="slide-image" src="http://placehold.it/800x300?text=HELLO" alt="">
+          </div>
+        EOF;
+
+        echo $slides;
+    }
+
+   
 }
 
 function get_slide_thumbnails() {
