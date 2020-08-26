@@ -74,6 +74,10 @@ if(!isset($_SESSION['username'])) {
                     include(TEMPLATE_BACK . DS ."/slides.php");
                 }
                 
+                if(isset($_GET['delete_slide_id'])){
+                    
+                    include(TEMPLATE_BACK . DS ."/delete_slides.php");
+                }
                 
                 
                 ?>
