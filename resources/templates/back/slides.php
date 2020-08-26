@@ -3,7 +3,7 @@
 
 <div class="row">
 
-    <h3 class="bg-success"><?php display_message(); ?></h3>
+    <h3 class="bg-success text-center"><?php display_message(); ?></h3>
 
     <div class="col-xs-3">
 

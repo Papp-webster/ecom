@@ -1,12 +1,5 @@
-$(document).ready(function(){
-
-$('#demo').hover(
-  function () {
-    $(this).toggle();
-
- 
-});
-
-
-
+$(document).ready(function () {
+  $("#img_box").click(function () {
+    confirm("DELETE?");
+  });
 });

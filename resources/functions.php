@@ -733,16 +733,18 @@ function get_slide_thumbnails() {
 
     while($row = fetch_array($query)) {
         $slide_id = $row['slide_id'];
+        $slide_title = $row['slide_title'];
         $slide_img = $row['slide_img'];
 
         $product_img = display_image($slide_img);
 
         $slides_thumb = <<<EOF
-          <div class="col-xs-6 col-md-3">
+          <div class="col-xs-6 col-md-3" id="img_box">
                  
           <a href="../../resources/templates/back/delete_slides.php?id={$slide_id}" class="">
           <img width="200" src="../../resources/{$product_img}" alt="" class="img-responsive slide_image"></a>
-            </div>
+          <div class="caption"><p>{$slide_title}</p></div>  
+          </div>
        
        
 EOF;
