@@ -27,7 +27,7 @@
                     </li>
 
                     <li>
-                        <a href="index.php?slides"><i class="fa fa-fw fa-wrench"></i> Slides</a>
+                        <a href="index.php?slides"><i class="fa fa-fw fa-desktop"></i> Slides</a>
                     </li>
 
                     

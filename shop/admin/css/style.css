@@ -6,30 +6,35 @@
 
 .product_image {
 
-width: 200px !important;
-height: 100px !important;
+  width: 200px !important;
+  height: 100px !important;
 
 
 }
 
 #admin_sidebar .form-group {
 
-background-color: #fff;
-padding: 8px;
+  background-color: #fff;
+  padding: 8px;
 
 }
 
 #admin_sidebar .form-group hr {
 
-margin-top: 10px;
-margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
 
 }
 
-#admin_sidebar .btn{
+#admin_sidebar .btn {
 
-width: 49%;
+  width: 49%;
 
 }
 
+.slide_image {
+  width: 200px;
+  margin-bottom: 10px;
+
+}

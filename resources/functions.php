@@ -728,6 +728,29 @@ function get_slides() {
 
 function get_slide_thumbnails() {
 
+    $query = query("SELECT * FROM slides ORDER BY slide_id ASC ");
+    confirm($query);
+
+    while($row = fetch_array($query)) {
+        $slide_id = $row['slide_id'];
+        $slide_img = $row['slide_img'];
+
+        $product_img = display_image($slide_img);
+
+        $slides_thumb = <<<EOF
+          <div class="col-xs-6 col-md-3">
+                 
+          <a href="" class="">
+          <img width="200" src="../../resources/{$product_img}" alt="" class="img-responsive slide_image"></a>
+            </div>
+       
+       
+EOF;
+
+        echo $slides_thumb;
+    }
+
+
 
 }
 
