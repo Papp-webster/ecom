@@ -640,10 +640,43 @@ DELIMITER;
 
 function add_slides() {
 
+if(isset($_POST['add_slide'])) {
+    $slide_title = escape_string($_POST['slide_title']);
+    $slide_img = escape_string($_FILES['file']['name']);
+    $slide_img_loc = escape_string($_FILES['file']['tmp_name']);
+
+    if(empty($slide_title) || empty($slide_img)) {
+        echo "<p class='text-center bg-warning'>This field is empty!</p>";
+    } else {
+        move_uploaded_file($slide_img_loc, UPLOAD_DIRECTORY . DS . $slide_img);
+
+        $query = query("INSERT INTO slides(slide_title, slide_img) VALUES('{$slide_title}', '{$slide_img}') ");
+        confirm($query);
+        set_message("Slide added!");
+        redirect("index.php?slides");
+    }
+}
 
 }
 
 function get_current_slide() {
+ $query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+    confirm($query);
+
+    while($row = fetch_array($query)) {
+        $slide_id = $row['slide_id'];
+        $slide_img = $row['slide_img'];
+
+        $product_img = display_image($slide_img);
+
+        $active_slides_admin = <<<EOF
+         
+         <img class="img-responsive" src="../../resources/{$product_img}" alt="slide_img">
+          
+        EOF;
+
+        echo $active_slides_admin;
+    }
 
 
 }
