@@ -2,7 +2,7 @@
 
 if(isset($_GET['id'])) {
  
-$query_find_image = query("SELECT slides_img FROM slides WHERE slide_id= " . escape_string($_GET['id']) . " LIMIT 1 ");
+$query_find_image = query("SELECT slide_img FROM slides WHERE slide_id= " . escape_string($_GET['id']) . " LIMIT 1 ");
 confirm($query_find_image);
 
 $row = fetch_array($query_find_image);
