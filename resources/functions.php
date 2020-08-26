@@ -84,7 +84,7 @@ function get_products() {
         $product = <<<DELIMITER
          <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <a href="item.php?id={$p_id}"><img src="../resources/{$product_photo}" alt="pic"></a>
+                            <a href="item.php?id={$p_id}"><img class"img-responsive" src="../resources/{$product_photo}" alt="pic"></a>
                             <div class="caption">
                                 <h4 class="pull-right">&#8364;{$price}</h4>
                                 <h4><a href="item.php?id={$p_id}">{$title}</a>
