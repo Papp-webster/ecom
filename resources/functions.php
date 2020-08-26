@@ -649,6 +649,23 @@ function get_current_slide() {
 }
 
 function get_active() {
+    $query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+    confirm($query);
+
+    while($row = fetch_array($query)) {
+        $slide_id = $row['slide_id'];
+        $slide_img = $row['slide_img'];
+
+        $product_img = display_image($slide_img);
+
+        $slides = <<<EOF
+         <div class="item active">
+         <img class="slide-image" src="../resources/{$product_img}" alt="slide_img">
+          </div>
+        EOF;
+
+        echo $slides;
+    }
 
 
 }
@@ -660,10 +677,13 @@ function get_slides() {
 
     while($row = fetch_array($query)) {
         $slide_id = $row['slide_id'];
+        $slide_img = $row['slide_img'];
+
+        $product_img = display_image($slide_img);
 
         $slides = <<<EOF
          <div class="item">
-         <img class="slide-image" src="http://placehold.it/800x300?text=LUDI" alt="">
+         <img class="slide-image" src="../resources/{$product_img}" alt="slide_img">
           </div>
         EOF;
 
