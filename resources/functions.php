@@ -658,13 +658,13 @@ function get_active() {
 
         $product_img = display_image($slide_img);
 
-        $slides = <<<EOF
+        $active_slides = <<<EOF
          <div class="item active">
          <img class="slide-image" src="../resources/{$product_img}" alt="slide_img">
           </div>
         EOF;
 
-        echo $slides;
+        echo $active_slides;
     }
 
 
