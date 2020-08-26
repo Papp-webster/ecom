@@ -663,7 +663,7 @@ function get_slides() {
 
         $slides = <<<EOF
          <div class="item">
-         <img class="slide-image" src="http://placehold.it/800x300?text=HELLO" alt="">
+         <img class="slide-image" src="http://placehold.it/800x300?text=LUDI" alt="">
           </div>
         EOF;
 

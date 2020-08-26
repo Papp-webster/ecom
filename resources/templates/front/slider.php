@@ -9,7 +9,9 @@
                                 <div class="item active">
                                     <img class="slide-image" src="http://placehold.it/800x300" alt="">
                                 </div>
+                                
                                 <?php get_slides(); ?>
+                                
                                 <div class="item">
                                     <img class="slide-image" src="http://placehold.it/800x300" alt="">
                                 </div>
