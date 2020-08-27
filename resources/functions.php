@@ -69,44 +69,109 @@ function recordCount($table){
   
   }
 
+  function count_all_products_in_stock(){
+
+    return mysqli_num_rows(query('SELECT * FROM products WHERE product_quantity >= 1'));
+}
+
 
 /* FRONT END FUNCTIONS */
 
-//get products
+//get products with pagination
 
-function get_products() {
-    $result = query("SELECT * FROM products WHERE product_quantity >= 1");
 
-    confirm($result);
 
-    while($row = fetch_array($result)){
-        $p_id = $row['product_id'];
-        $price = $row['product_price'];
-        $title = $row['product_title'];
-        $desc = $row['product_desc'];
-        $img = $row['product_img'];
-
-        $product_photo = display_image($img);
-
-        $product = <<<DELIMITER
-         <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <a href="item.php?id={$p_id}"><img class"img-responsive" src="../resources/{$product_photo}" alt="pic"></a>
-                            <div class="caption">
-                                <h4 class="pull-right">&#8364;{$price}</h4>
-                                <h4><a href="item.php?id={$p_id}">{$title}</a>
-                                </h4>
-                                <p>{$desc}</p>
-                            </div>
-                            <a class="btn btn-primary" href="../resources/cart.php?add={$p_id}">Add to cart</a> <a href="item.php?id={$p_id}" class="btn btn-default">More Info</a>
-                        </div>
-                    </div>
-        DELIMITER;
-
-        echo $product;
-        
-    }
-}
+function get_products_with_pagination($perPage = "6") {
+    $rows = count_all_products_in_stock();
+  
+  
+      if(isset($_GET['page'])){ //get page from URL if its there
+          $page = preg_replace('#[^0-9]#', '', $_GET['page']);//filter everything but numbers
+  
+  
+  
+      } else{
+          $page = 1;
+      }
+  
+  
+  
+      $lastPage = ceil($rows / $perPage);
+  
+      if($page < 1){
+          $page = 1;
+      }elseif($page > $lastPage){
+          $page = $lastPage;
+      }
+  
+      $middleNumbers = '';
+      $sub1 = $page - 1;
+      $sub2 = $page - 2;
+      $add1 = $page + 1;
+      $add2 = $page + 2;
+      if($page == 1){
+          $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add1.'">' .$add1. '</a></li>';
+      } elseif ($page == $lastPage) {
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$sub1.'">' .$sub1. '</a></li>';
+          $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+      }elseif ($page > 2 && $page < ($lastPage -1)) {
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$sub2.'">' .$sub2. '</a></li>';
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$sub1.'">' .$sub1. '</a></li>';
+          $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add1.'">' .$add1. '</a></li>';
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add2.'">' .$add2. '</a></li>';
+      } elseif($page > 1 && $page < $lastPage){
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page= '.$sub1.'">' .$sub1. '</a></li>';
+          $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+          $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add1.'">' .$add1. '</a></li>';
+      }
+  
+      $limit = 'LIMIT ' . ($page-1) * $perPage . ',' . $perPage;
+      $query2 = query(" SELECT * FROM products WHERE product_quantity >= 1 ". $limit);
+      confirm($query2);
+      $outputPagination = ""; // Initialize the pagination output variable
+  
+      if($page != 1){
+          $prev  = $page - 1;
+          $outputPagination .='<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$prev.'">Back</a></li>';
+      }
+  
+      $outputPagination .= $middleNumbers;
+  
+      if($page != $lastPage){
+          $next = $page + 1;
+          $outputPagination .='<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$next.'">Next</a></li>';
+      }
+  
+      while($row = fetch_array($query2)) {
+          $product_image = display_image($row['product_img']);
+          $product = <<<DELIMETER
+  
+  <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="thumbnail">
+          <a href="item.php?id={$row['product_id']}"><img src="../resources/{$product_image}" alt=""></a>
+          <div class="caption">
+              <h4 class="pull-right">&#36;{$row['product_price']}</h4>
+              <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
+              </h4>
+              <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+               <p class="text-center"><a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['product_id']}">Add to cart</a>
+               </a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a></p>
+          </div>
+      </div>
+  </div>
+  
+  DELIMETER;
+          echo $product;
+      }
+  
+      echo "<div class='text-center' style='clear: both;' ><ul class='pagination' >{$outputPagination}</ul></div>";
+  }
+  
+  
+  
+  
 
 
 function get_categories_menu() {
