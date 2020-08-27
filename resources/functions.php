@@ -288,7 +288,7 @@ function display_orders() {
             <td>{$order_tx}</td>
             <td>{$order_currency}</td>
             <td>{$order_status}</td>
-            <td><a href="../../resources/templates/back/delete_order.php?id={$order_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <td><a href="index.php?delete_order_id={$order_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
 
         </tr>
            
@@ -337,7 +337,7 @@ function display_products_admin() {
             <td>{$product_price}</td>
             <td>{$product_quantity}</td>
             <td><a href="index.php?edit_product&id={$product_id}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></td>
-            <td><a href="../../resources/templates/back/delete_product.php?id={$product_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <td><a href="index.php?delete_prod_id={$product_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
             
 
         </tr>
@@ -623,7 +623,7 @@ function display_reports_admin() {
             <td>{$product_price}</td>
             <td>{$product_title}</td>
             <td>{$product_quantity}</td>
-            <td><a href="../../resources/templates/back/delete_report.php?id={$report_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <td><a href="index.php?report_id={$report_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
             
 
         </tr>
