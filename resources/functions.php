@@ -62,6 +62,13 @@ function last_id() {
     return mysqli_insert_id($connect);
 }
 
+// admin panel counts
+function recordCount($table){
+    $result=query("SELECT * FROM " . $table);
+    return  mysqli_num_rows($result);
+  
+  }
+
 
 /* FRONT END FUNCTIONS */
 
@@ -289,6 +296,36 @@ function display_orders() {
             <td>{$order_currency}</td>
             <td>{$order_status}</td>
             <td><a href="index.php?delete_order_id={$order_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+
+        </tr>
+           
+DELIMITER;
+
+     echo $orders;
+
+    }
+
+}
+
+function display_orders_panel() {
+    $query= query("SELECT * FROM orders");
+    confirm($query);
+
+    while($row = fetch_array($query)) {
+        $order_id= $row['order_id'];
+        $order_amount = $row['order_amount'];
+        $order_tx= $row['order_tx'];
+        $order_currency= $row['order_currency'];
+        $order_status= $row['order_status'];
+
+        $orders = <<<DELIMITER
+        <tr>  
+            <td>{$order_id}</td>
+            <td>{$order_amount}</td>
+            <td>{$order_tx}</td>
+            <td>{$order_currency}</td>
+            <td>{$order_status}</td>
+            
 
         </tr>
            
@@ -624,6 +661,46 @@ function display_reports_admin() {
             <td>{$product_title}</td>
             <td>{$product_quantity}</td>
             <td><a href="index.php?report_id={$report_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+            
+
+        </tr>
+           
+DELIMITER;
+
+     echo $reports_view;
+
+    }
+}
+
+
+
+function display_reports_main_admin() {
+    $report_query= query("SELECT * FROM reports");
+    confirm($report_query);
+
+    while($row = fetch_array($report_query)) {
+
+        
+
+        $report_id= $row['report_id'];
+        $order_id= $row['order_id'];
+        $product_id= $row['product_id'];
+        $product_title = $row['product_title'];
+        $product_price = $row['product_price'];
+        $product_quantity = $row['product_quantity'];
+        
+
+        
+
+        $reports_view = <<<DELIMITER
+        <tr>  
+            <td>{$report_id}</td>
+             <td>{$order_id}</td>
+              <td>{$product_id}</td>
+            <td>{$product_price}</td>
+            <td>{$product_title}</td>
+            <td>{$product_quantity}</td>
+            
             
 
         </tr>
