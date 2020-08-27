@@ -1,16 +1,16 @@
-<?php require_once("../../config.php");
+<?php require_once("../../resources/config.php");
 
-if(isset($_GET['id'])) {
- $query = query("DELETE FROM reports WHERE report_id= " . escape_string($_GET['id']) . " ");
+if(isset($_GET['report_id'])) {
+ $query = query("DELETE FROM reports WHERE report_id= " . escape_string($_GET['report_id']) . " ");
  confirm($query);
 
  set_message("Your report was deleted!");
 
- redirect("../../../shop/admin/index.php?reports");
+ redirect("index.php?reports");
 
 } else {
 
-    redirect("../../../shop/admin/index.php?reports");
+    redirect("index.php?reports");
 }
 
 

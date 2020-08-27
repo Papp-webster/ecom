@@ -1,25 +1,17 @@
 
+<?php require_once("../../resources/config.php");
 
-
-        
-
-
-
-
-
-<?php require_once("../../config.php");
-
-if(isset($_GET['id'])) {
- $query = query("DELETE FROM products WHERE product_id= " . escape_string($_GET['id']) . " ");
+if(isset($_GET['delete_prod_id'])) {
+ $query = query("DELETE FROM products WHERE product_id= " . escape_string($_GET['delete_prod_id']) . " ");
  confirm($query);
 
  set_message("Your product was deleted!");
 
- redirect("../../../shop/admin/index.php?products");
+ redirect("index.php?products");
 
 } else {
 
-    redirect("../../../shop/admin/index.php?products");
+    redirect("index.php?products");
 }
 
 

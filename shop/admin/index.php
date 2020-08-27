@@ -49,6 +49,11 @@ if(!isset($_SESSION['username'])) {
                     include(TEMPLATE_BACK . DS ."/products.php");
                 }
 
+                if(isset($_GET['delete_prod_id'])){
+                    
+                    include(TEMPLATE_BACK . DS ."/delete_product.php");
+                }
+
                 if(isset($_GET['users'])){
                     
                     include(TEMPLATE_BACK . DS ."/users.php");
@@ -69,6 +74,11 @@ if(!isset($_SESSION['username'])) {
                     include(TEMPLATE_BACK . DS ."/reports.php");
                 }
 
+                if(isset($_GET['report_id'])){
+                    
+                    include(TEMPLATE_BACK . DS ."/delete_report.php");
+                }
+
                  if(isset($_GET['slides'])){
                     
                     include(TEMPLATE_BACK . DS ."/slides.php");
@@ -77,6 +87,11 @@ if(!isset($_SESSION['username'])) {
                 if(isset($_GET['delete_slide_id'])){
                     
                     include(TEMPLATE_BACK . DS ."/delete_slides.php");
+                }
+
+                if(isset($_GET['delete_order_id'])){
+                    
+                    include(TEMPLATE_BACK . DS ."/delete_order.php");
                 }
                 
                 
