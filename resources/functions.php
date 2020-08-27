@@ -486,7 +486,7 @@ function show_categories_in_admin() {
      <tr>
             <td>{$cat_id}</td>
             <td>{$cat_title}</td>
-            <td><a href="../../resources/templates/back/delete_category.php?id={$cat_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <td><a href="index.php?category_id={$cat_id}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
         </tr>
      
      
@@ -548,7 +548,7 @@ $user = <<<DELIMETER
     <td>{$username}</td>
      <td>{$email}</td>
      <td><img src="../../resources/{$user_photo}" alt="user_pic" width = "100"></td>
-    <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$user_id}"><span class="glyphicon glyphicon-remove"></span></a></td>
+    <td><a class="btn btn-danger" href="index.php?delete_user_id={$user_id}"><span class="glyphicon glyphicon-remove"></span></a></td>
 </tr>
 
 
@@ -741,7 +741,7 @@ function get_slide_thumbnails() {
         $slides_thumb = <<<EOF
           <div class="col-xs-6 col-md-3" id="img_box">
                  
-          <a href="../../resources/templates/back/delete_slides.php?id={$slide_id}" class="">
+          <a href="index.php?slides_id={$slide_id}" class="">
           <img width="200" src="../../resources/{$product_img}" alt="" class="img-responsive slide_image"></a>
           <div class="caption"><p>{$slide_title}</p></div>  
           </div>
