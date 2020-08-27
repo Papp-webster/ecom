@@ -55,7 +55,7 @@
 
      <div class="form-group">
           <label for="password">Upload photo</label>
-      <input type="file" name="file" class="form-control"  >
+      <input type="file" name="image" class="form-control-file"  >
          
      </div>
 

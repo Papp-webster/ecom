@@ -575,8 +575,8 @@ if(isset($_POST['add_user'])) {
 $username   = escape_string($_POST['username']);
 $email      = escape_string($_POST['email']);
 $password   = escape_string($_POST['password']);
-$user_photo = escape_string($_FILES['file']['name']);
-$photo_temp = escape_string($_FILES['file']['tmp_name']);
+$user_photo = escape_string($_FILES['image']['name']);
+$photo_temp = escape_string($_FILES['image']['tmp_name']);
 
 
 move_uploaded_file($photo_temp, UPLOAD_DIRECTORY . DS . $user_photo);
@@ -642,13 +642,13 @@ function add_slides() {
 
 if(isset($_POST['add_slide'])) {
     $slide_title = escape_string($_POST['slide_title']);
-    $slide_img = escape_string($_FILES['file']['name']);
-    $slide_img_loc = escape_string($_FILES['file']['tmp_name']);
+    $slide_img = escape_string($_FILES['image']['name']);
+    $slide_img_loc = escape_string($_FILES['image']['tmp_name']);
 
     if(empty($slide_title) || empty($slide_img)) {
         echo "<p class='text-center bg-warning'>This field is empty!</p>";
     } else {
-        move_uploaded_file($slide_img_loc, UPLOAD_DIRECTORY . DS . $slide_img);
+        move_uploaded_file(slide_img_loc  , UPLOAD_DIRECTORY . DS . $slide_img);
 
         $query = query("INSERT INTO slides(slide_title, slide_img) VALUES('{$slide_title}', '{$slide_img}') ");
         confirm($query);

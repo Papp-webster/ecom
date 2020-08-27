@@ -195,7 +195,7 @@ function process_transaction() {
     
     
     $total += $sub;
-    echo $item_quantity;
+    $item_quantity;
     
     
                }

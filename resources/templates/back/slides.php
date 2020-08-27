@@ -20,7 +20,7 @@
 
             <div class="form-group">
 
-                <input type="file" name="file">
+                <input type="file" class="form-control-file" name="image">
 
             </div>
 
