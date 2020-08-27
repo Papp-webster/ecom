@@ -4,7 +4,7 @@
       <small>Page</small>
   </h1>
 
-  <h4 class="text-center bg-success"><?php display_message(); ?></h4>
+  
 
 <div class="col-md-6 user_image_box">
     

@@ -10,9 +10,9 @@
                             Users
                          
                         </h1>
-                          <p class="bg-success">
-                            
-                        </p>
+
+                        <h4 class="text-center bg-success"><?php display_message(); ?></h4>
+                          
 
                         <a href="index.php?add_user" class="btn btn-primary">Add User</a>
 
