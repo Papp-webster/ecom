@@ -68,7 +68,7 @@ function last_id() {
 //get products
 
 function get_products() {
-    $result = query("SELECT * FROM products");
+    $result = query("SELECT * FROM products WHERE product_quantity >= 1");
 
     confirm($result);
 
