@@ -146,7 +146,7 @@ function get_categories_side() {
 
 function get_prod_in_catpage() {
     
-    $result = query(" SELECT * FROM products WHERE product_cat_id= " . escape_string($_GET['id']) . " ");
+    $result = query(" SELECT * FROM products WHERE product_cat_id= " . escape_string($_GET['id']) . " AND product_quantity >= 1 ");
 
     confirm($result);
 
@@ -184,7 +184,7 @@ function get_prod_in_catpage() {
 
 function get_prod_in_shop() {
     
-    $result = query("SELECT * FROM products");
+    $result = query("SELECT * FROM products WHERE product_quantity >= 1 ");
 
     confirm($result);
 
